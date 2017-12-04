@@ -77,7 +77,7 @@ void MOTOR::manager()
     //Checks to see the crafts current movement.
     if(state != FORWARD){
 
-      //Checks for the servo orientation. If previously rotationg, 
+      //Checks for the servo orientation. If previously rotating, 
       //   turns all servos to original position so all motors are
       //   providing forward thrust.
       if((state == RIGHT) || (state == LEFT)){
@@ -247,9 +247,11 @@ void MOTOR::applyBreak()
 void MOTOR::spinUp()
 {
   while(throttle > currentThrottle){
-
+  
     Serial.println(currentThrottle + INCREMENT_AMOUNT);
+    //Increments the throttle written to the motor
     motor.writeMicroseconds(currentThrottle + INCREMENT_AMOUNT);
+    //Increments the currentThrottle variable
     currentThrottle = currentThrottle + INCREMENT_AMOUNT;
      
     Serial.println(throttle);
@@ -272,7 +274,9 @@ void MOTOR::spinDown()
   while(currentThrottle > throttle){
 
     Serial.println(currentThrottle - INCREMENT_AMOUNT);
+    //Decrements the throttle written to the motor
     motor.writeMicroseconds(currentThrottle - INCREMENT_AMOUNT);
+    //Decrements the currentThrottle variable
     currentThrottle = currentThrottle - INCREMENT_AMOUNT;
     
     Serial.println(throttle);
